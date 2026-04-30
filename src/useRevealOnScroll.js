@@ -22,6 +22,19 @@ export function useRevealOnScroll() {
       return
     }
 
+    const updateParticles = () => {
+      const scrollY = window.scrollY || 0
+      const root = document.documentElement
+
+      root.style.setProperty('--particle-x', `${scrollY * 0.42}px`)
+      root.style.setProperty('--particle-y', `${scrollY * -0.12}px`)
+      root.style.setProperty('--particle-x-reverse', `${scrollY * -0.58}px`)
+      root.style.setProperty('--particle-y-reverse', `${scrollY * 0.18}px`)
+    }
+
+    updateParticles()
+    window.addEventListener('scroll', updateParticles, { passive: true })
+
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -44,6 +57,7 @@ export function useRevealOnScroll() {
     headerNodes.forEach((node) => headerObserver.observe(node))
 
     return () => {
+      window.removeEventListener('scroll', updateParticles)
       sectionObserver.disconnect()
       headerObserver.disconnect()
     }
