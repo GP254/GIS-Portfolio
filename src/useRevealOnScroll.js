@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 
 /**
- * Fade-in sections as they enter the viewport. Uses a single IntersectionObserver,
- * unobserves each node after reveal, and respects prefers-reduced-motion.
+ * Fade sections and headers as they enter and leave the viewport.
+ * Uses IntersectionObserver and respects prefers-reduced-motion.
  */
 export function useRevealOnScroll() {
   useEffect(() => {
@@ -25,13 +25,10 @@ export function useRevealOnScroll() {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            applyVisible(entry.target)
-            sectionObserver.unobserve(entry.target)
-          }
+          entry.target.classList.toggle('reveal-visible', entry.isIntersecting)
         })
       },
-      { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
+      { root: null, rootMargin: '-12% 0px -18% 0px', threshold: 0.18 }
     )
 
     const headerObserver = new IntersectionObserver(
