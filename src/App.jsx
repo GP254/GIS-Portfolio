@@ -128,6 +128,11 @@ function App() {
                   Resume
                 </a>
               </div>
+
+              <a className="scroll-cue" href="#projects" aria-label="Scroll down to projects">
+                <span>Scroll down</span>
+                <span className="scroll-cue-icon" aria-hidden="true" />
+              </a>
             </div>
 
             <aside className="about-card card" aria-label="Profile details">
