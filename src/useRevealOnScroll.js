@@ -7,7 +7,8 @@ import { useEffect } from 'react'
 export function useRevealOnScroll() {
   useEffect(() => {
     const nodes = document.querySelectorAll('[data-reveal]')
-    if (!nodes.length) return
+    const headerNodes = document.querySelectorAll('[data-header-reveal]')
+    if (!nodes.length && !headerNodes.length) return
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -17,22 +18,37 @@ export function useRevealOnScroll() {
 
     if (reduceMotion) {
       nodes.forEach(applyVisible)
+      headerNodes.forEach((node) => node.classList.add('header-reveal-visible'))
       return
     }
 
-    const io = new IntersectionObserver(
+    const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             applyVisible(entry.target)
-            io.unobserve(entry.target)
+            sectionObserver.unobserve(entry.target)
           }
         })
       },
       { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
     )
 
-    nodes.forEach((node) => io.observe(node))
-    return () => io.disconnect()
+    const headerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('header-reveal-visible', entry.isIntersecting)
+        })
+      },
+      { root: null, rootMargin: '-18% 0px -34% 0px', threshold: 0.25 }
+    )
+
+    nodes.forEach((node) => sectionObserver.observe(node))
+    headerNodes.forEach((node) => headerObserver.observe(node))
+
+    return () => {
+      sectionObserver.disconnect()
+      headerObserver.disconnect()
+    }
   }, [])
 }

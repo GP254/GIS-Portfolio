@@ -110,6 +110,19 @@ a {
     transform 0.55s ease;
 }
 
+.header-reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.header-reveal-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
 .eyebrow,
 .mini-heading,
 .project-category {
@@ -197,6 +210,39 @@ h1 {
 
 .about-card {
   padding: 1.2rem;
+}
+
+.headshot-wrap {
+  position: relative;
+  width: min(220px, 100%);
+  aspect-ratio: 1;
+  margin: 0 0 1.2rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(107, 184, 255, 0.1);
+}
+
+.headshot,
+.headshot-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.headshot {
+  z-index: 1;
+  display: block;
+  object-fit: cover;
+}
+
+.headshot-fallback {
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  font-size: 3rem;
+  font-weight: 800;
 }
 
 .profile-list {
@@ -289,7 +335,8 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .header-reveal {
     opacity: 1;
     transform: none;
     transition: none;

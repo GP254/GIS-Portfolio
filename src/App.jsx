@@ -9,6 +9,7 @@ const portfolio = {
     github: 'https://github.com/GP254',
     linkedin: 'https://www.linkedin.com/in/your-linkedin/',
     resume: '/resume.pdf',
+    headshot: '/images/headshot.jpg',
     about:
       'I am a Geomatics co-op student at the University of Waterloo focused on GIS analysis, web mapping, remote sensing, and spatial data automation. My work combines ArcGIS Pro, ArcGIS Online, Experience Builder, Python, SQL, and Google Earth Engine to turn spatial datasets into clear, usable tools for planning, research, and public access.',
     highlights: [
@@ -111,7 +112,7 @@ function App() {
       <main>
         <section id="about" className="section about-section reveal" data-reveal>
           <div className="container about-layout">
-            <div>
+            <div className="header-reveal" data-header-reveal>
               <p className="eyebrow">{portfolio.profile.role}</p>
               <h1>{portfolio.profile.name}</h1>
               <p className="about-copy">{portfolio.profile.about}</p>
@@ -130,6 +131,21 @@ function App() {
             </div>
 
             <aside className="about-card card" aria-label="Profile details">
+              <div className="headshot-wrap">
+                <img
+                  className="headshot"
+                  src={portfolio.profile.headshot}
+                  alt={`${portfolio.profile.name} headshot`}
+                  loading="eager"
+                  onError={(event) => {
+                    event.currentTarget.style.display = 'none'
+                  }}
+                />
+                <div className="headshot-fallback" aria-hidden="true">
+                  GP
+                </div>
+              </div>
+
               <p className="mini-heading">About Me</p>
               <dl className="profile-list">
                 <div>
@@ -157,7 +173,7 @@ function App() {
 
         <section id="projects" className="section section-soft reveal" data-reveal>
           <div className="container">
-            <div className="section-header">
+            <div className="section-header header-reveal" data-header-reveal>
               <p className="eyebrow">Selected work</p>
               <h2 className="section-heading">Projects</h2>
             </div>
@@ -205,7 +221,7 @@ function App() {
 
         <section id="resume" className="section reveal" data-reveal>
           <div className="container">
-            <div className="section-header">
+            <div className="section-header header-reveal" data-header-reveal>
               <p className="eyebrow">Current PDF</p>
               <h2 className="section-heading">Resume</h2>
             </div>
