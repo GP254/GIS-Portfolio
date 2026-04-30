@@ -108,7 +108,7 @@ const portfolio = {
       title: 'Sentinel-2 Snow Explorer and Analyzer',
       category: 'Remote Sensing',
       featured: true,
-      preview: 'https://picsum.photos/seed/geoport-snow/800/450',
+      preview: '/images/projects/sentinel-2-snow-explorer.png',
       summary:
           'Google Earth Engine application for analyzing urban-rural snow persistence using Sentinel-2 imagery.',
       details:
@@ -133,7 +133,7 @@ const portfolio = {
       title: 'University of Waterloo Campus Map Redesign',
       category: 'Web GIS',
       featured: true,
-      preview: 'https://picsum.photos/seed/geoport-campus-map/800/450',
+      preview: '/images/projects/campus-map-redesign.png',
       summary:
           'Interactive Web GIS campus wayfinding application designed to improve navigation, accessibility, and spatial data usability.',
       details:
@@ -155,27 +155,10 @@ const portfolio = {
       ],
     },
     {
-      title: 'UofW Geospatial Centre Open Airphoto Collection App',
-      category: 'Web Mapping',
-      featured: true,
-      preview: 'https://picsum.photos/seed/geoport-airphoto/800/450',
-      summary:
-          'Downloadable airphoto dashboard for querying aerial photography by location and year across Waterloo, Kitchener, and Guelph.',
-      details:
-          'Public-facing airphoto access experience that allows users to search and download aerial photography by year and municipality. This portfolio keeps the project as an outbound link while making the portfolio itself independent from ArcGIS hosting.',
-      stack: ['ArcGIS Experience Builder', 'Dashboard UX', 'Airphotos', 'Search Design'],
-      links: [
-        {
-          label: 'Live project',
-          href: 'https://experience.arcgis.com/experience/b6571e82a3c74d8e9554abcc3acbd30f/',
-        },
-      ],
-    },
-    {
       title: 'University of Waterloo - Campus Green Spaces and Green Roofs',
       category: 'GIS & Storytelling',
       featured: true,
-      preview: 'https://picsum.photos/seed/geoport-campus/800/450',
+      preview: '/images/projects/campus-green-spaces.png',
       summary:
           'Story-based campus mapping project highlighting green spaces, rooftop gardens, and sustainability features.',
       details:
@@ -189,19 +172,19 @@ const portfolio = {
       ],
     },
     {
-      title: 'Geospatial Centre Data Portal',
-      category: 'Web GIS',
+      title: 'UofW Geospatial Centre Open Airphoto Collection App',
+      category: 'Web Mapping',
       featured: true,
-      preview: 'https://picsum.photos/seed/geoport-hub/800/450',
+      preview: '/images/projects/open-airphoto-collection.png',
       summary:
-          'Open data portal supporting data discovery, download, and service access in multiple geospatial formats.',
+          'Downloadable airphoto dashboard for querying aerial photography by location and year across Waterloo, Kitchener, and Guelph.',
       details:
-          'ArcGIS Hub portal supporting spatial data distribution, metadata access, and open data discovery. The portal improves access to geospatial datasets, airphotos, and GIS services through a centralized web interface.',
-      stack: ['ArcGIS Hub', 'Open Data', 'Metadata', 'Data Delivery', 'Spatial Data Infrastructure'],
+          'Public-facing airphoto access experience that allows users to search and download aerial photography by year and municipality. This portfolio keeps the project as an outbound link while making the portfolio itself independent from ArcGIS hosting.',
+      stack: ['ArcGIS Experience Builder', 'Dashboard UX', 'Airphotos', 'Search Design'],
       links: [
         {
-          label: 'Open portal',
-          href: 'https://university-of-waterloo-geospatial-centre-open-data-geouw.hub.arcgis.com/',
+          label: 'Live project',
+          href: 'https://experience.arcgis.com/experience/b6571e82a3c74d8e9554abcc3acbd30f/',
         },
       ],
     },
