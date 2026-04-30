@@ -592,7 +592,7 @@ h2.section-heading {
 .project-preview {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
@@ -664,7 +664,7 @@ h2.section-heading {
 .spotlight-preview {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
