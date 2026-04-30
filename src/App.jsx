@@ -90,11 +90,32 @@ const portfolio = {
   ],
 }
 
+function SpatialBackdrop() {
+  return (
+    <div className="space-backdrop" aria-hidden="true">
+      <div className="star-field star-field-near" />
+      <div className="star-field star-field-far" />
+
+      <div className="orbit-system">
+        <img className="globe-asset" src="/images/globe-orbit.png" alt="" draggable="false" />
+        <div className="satellite-plane">
+          <span className="satellite-ring" />
+          <div className="satellite-orbit">
+            <img className="satellite-asset" src="/images/satellite-orbit.png" alt="" draggable="false" />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function App() {
   useRevealOnScroll()
 
   return (
     <div className="site-shell">
+      <SpatialBackdrop />
+
       <header className="topbar">
         <div className="container topbar-inner">
           <a href="#about" className="brand" aria-label="Go to About Me">

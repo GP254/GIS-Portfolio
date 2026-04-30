@@ -30,6 +30,7 @@ export function useRevealOnScroll() {
       root.style.setProperty('--particle-y', `${scrollY * -0.12}px`)
       root.style.setProperty('--particle-x-reverse', `${scrollY * -0.58}px`)
       root.style.setProperty('--particle-y-reverse', `${scrollY * 0.18}px`)
+      root.style.setProperty('--satellite-scroll-rotate', `${scrollY * 0.32}deg`)
     }
 
     updateParticles()

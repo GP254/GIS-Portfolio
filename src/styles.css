@@ -12,6 +12,7 @@
   --particle-y: 0px;
   --particle-x-reverse: 0px;
   --particle-y-reverse: 0px;
+  --satellite-scroll-rotate: 0deg;
 }
 
 * {
@@ -27,6 +28,7 @@ body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
+  overflow-x: hidden;
 }
 
 a {
@@ -35,7 +37,145 @@ a {
 }
 
 .site-shell {
+  position: relative;
   min-height: 100vh;
+}
+
+.space-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 80% 22%, rgba(107, 184, 255, 0.18), transparent 34%),
+    radial-gradient(circle at 24% 76%, rgba(124, 245, 208, 0.1), transparent 28%),
+    linear-gradient(180deg, rgba(7, 12, 19, 0.15), rgba(10, 16, 24, 0.72));
+}
+
+.star-field {
+  position: absolute;
+  inset: -12%;
+  opacity: 0.58;
+  transition: transform 0.08s linear;
+}
+
+.star-field-near {
+  background:
+    radial-gradient(circle at 6% 14%, rgba(232, 238, 248, 0.95) 0 1px, transparent 2px),
+    radial-gradient(circle at 20% 58%, rgba(124, 245, 208, 0.74) 0 1px, transparent 2px),
+    radial-gradient(circle at 36% 28%, rgba(107, 184, 255, 0.72) 0 1px, transparent 2px),
+    radial-gradient(circle at 58% 12%, rgba(232, 238, 248, 0.82) 0 1px, transparent 2px),
+    radial-gradient(circle at 74% 68%, rgba(124, 245, 208, 0.72) 0 1px, transparent 2px),
+    radial-gradient(circle at 92% 34%, rgba(232, 238, 248, 0.85) 0 1px, transparent 2px);
+  transform: translate3d(var(--particle-x), var(--particle-y), 0);
+}
+
+.star-field-far {
+  opacity: 0.36;
+  background:
+    radial-gradient(circle at 12% 42%, rgba(107, 184, 255, 0.88) 0 1px, transparent 2px),
+    radial-gradient(circle at 26% 18%, rgba(232, 238, 248, 0.78) 0 1px, transparent 2px),
+    radial-gradient(circle at 44% 76%, rgba(124, 245, 208, 0.76) 0 1px, transparent 2px),
+    radial-gradient(circle at 62% 44%, rgba(232, 238, 248, 0.74) 0 1px, transparent 2px),
+    radial-gradient(circle at 84% 18%, rgba(107, 184, 255, 0.84) 0 1px, transparent 2px),
+    radial-gradient(circle at 96% 82%, rgba(124, 245, 208, 0.76) 0 1px, transparent 2px);
+  transform: translate3d(var(--particle-x-reverse), var(--particle-y-reverse), 0);
+}
+
+.orbit-system {
+  position: absolute;
+  top: clamp(5rem, 12vh, 8rem);
+  right: clamp(-16rem, -12vw, -5rem);
+  width: min(56vw, 680px);
+  aspect-ratio: 1;
+  opacity: 0.84;
+  filter: drop-shadow(0 34px 70px rgba(0, 0, 0, 0.28));
+}
+
+.globe-asset,
+.satellite-plane,
+.satellite-ring,
+.satellite-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.globe-asset {
+  z-index: 1;
+  width: 82%;
+  max-width: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+}
+
+.satellite-plane {
+  z-index: 2;
+  width: 90%;
+  height: 38%;
+  transform: translate(-50%, -50%) rotate(-17deg);
+}
+
+.satellite-ring {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(124, 245, 208, 0.58);
+  border-radius: 50%;
+  box-shadow:
+    0 0 16px rgba(124, 245, 208, 0.16),
+    inset 0 0 16px rgba(107, 184, 255, 0.08);
+  transform: translate(-50%, -50%);
+}
+
+.satellite-ring::before,
+.satellite-ring::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  border-radius: inherit;
+}
+
+.satellite-ring::before {
+  left: 13%;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-2);
+  box-shadow: 0 0 16px rgba(124, 245, 208, 0.7);
+  transform: translate(-50%, -50%);
+}
+
+.satellite-ring::after {
+  right: 18%;
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  box-shadow: 0 0 14px rgba(107, 184, 255, 0.68);
+  transform: translate(50%, -50%);
+}
+
+.satellite-orbit {
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) rotate(var(--satellite-scroll-rotate));
+  transition: transform 0.08s linear;
+}
+
+.satellite-asset {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: clamp(78px, 12vw, 148px);
+  max-width: none;
+  user-select: none;
+  filter: drop-shadow(0 0 18px rgba(124, 245, 208, 0.42));
+  transform: translate(-50%, -50%) rotate(18deg);
+}
+
+.topbar,
+main {
+  position: relative;
+  z-index: 1;
 }
 
 .container {
@@ -97,7 +237,8 @@ a {
 }
 
 .section-soft {
-  background: var(--bg-soft);
+  background: rgba(13, 21, 32, 0.82);
+  backdrop-filter: blur(2px);
 }
 
 .card {
@@ -495,9 +636,20 @@ h1 {
   .scroll-cue-icon {
     animation: none;
   }
+
+  .satellite-orbit {
+    transition: none;
+  }
 }
 
 @media (max-width: 900px) {
+  .orbit-system {
+    top: 7rem;
+    right: -34vw;
+    width: 92vw;
+    opacity: 0.52;
+  }
+
   .about-section {
     min-height: auto;
   }
@@ -513,6 +665,13 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .orbit-system {
+    top: 8.5rem;
+    right: -54vw;
+    width: 124vw;
+    opacity: 0.38;
+  }
+
   .topbar-inner {
     align-items: flex-start;
     flex-direction: column;
