@@ -159,11 +159,55 @@ h1 {
   line-height: 1.05;
 }
 
+.about-section {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+}
+
+.about-section::before,
+.about-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.about-section::before {
+  opacity: 0.22;
+  background:
+    linear-gradient(90deg, rgba(124, 245, 208, 0.22) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(107, 184, 255, 0.16) 1px, transparent 1px),
+    radial-gradient(circle at 18% 24%, rgba(124, 245, 208, 0.18), transparent 28%),
+    radial-gradient(circle at 78% 64%, rgba(107, 184, 255, 0.16), transparent 32%);
+  background-size:
+    84px 84px,
+    84px 84px,
+    100% 100%,
+    100% 100%;
+  animation: gis-grid-drift 18s linear infinite;
+}
+
+.about-section::after {
+  opacity: 0.18;
+  background:
+    linear-gradient(135deg, transparent 0 43%, rgba(124, 245, 208, 0.28) 43.2% 43.7%, transparent 44%),
+    linear-gradient(28deg, transparent 0 56%, rgba(107, 184, 255, 0.22) 56.2% 56.7%, transparent 57%),
+    radial-gradient(circle at 34% 42%, rgba(124, 245, 208, 0.5) 0 3px, transparent 4px),
+    radial-gradient(circle at 62% 26%, rgba(107, 184, 255, 0.45) 0 3px, transparent 4px),
+    radial-gradient(circle at 78% 72%, rgba(124, 245, 208, 0.4) 0 3px, transparent 4px);
+  animation: gis-network-pulse 6s ease-in-out infinite;
+}
+
 .about-layout {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
-  gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+  gap: 2rem;
+  align-items: center;
 }
 
 .about-copy,
@@ -280,19 +324,50 @@ h1 {
   }
 }
 
+@keyframes gis-grid-drift {
+  0% {
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position:
+      84px 42px,
+      42px 84px,
+      0 0,
+      0 0;
+  }
+}
+
+@keyframes gis-network-pulse {
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
 .about-card {
-  padding: 1.2rem;
+  padding: 1.3rem;
+  background: rgba(10, 16, 24, 0.72);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
 }
 
 .headshot-wrap {
   position: relative;
-  width: min(220px, 100%);
-  aspect-ratio: 1;
-  margin: 0 0 1.2rem;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  margin: 0 0 1.25rem;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(124, 245, 208, 0.28);
   border-radius: var(--radius);
   background: rgba(107, 184, 255, 0.1);
+  box-shadow: 0 18px 42px rgba(124, 245, 208, 0.1);
 }
 
 .headshot,
@@ -307,6 +382,7 @@ h1 {
   z-index: 1;
   display: block;
   object-fit: cover;
+  object-position: center 18%;
 }
 
 .headshot-fallback {
@@ -437,15 +513,28 @@ h1 {
     transition: none;
   }
 
+  .about-section::before,
+  .about-section::after {
+    animation: none;
+  }
+
   .scroll-cue-icon {
     animation: none;
   }
 }
 
 @media (max-width: 900px) {
+  .about-section {
+    min-height: auto;
+  }
+
   .about-layout,
   .project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-card {
+    max-width: 440px;
   }
 }
 
@@ -458,6 +547,14 @@ h1 {
 
   .section {
     padding: 3rem 0;
+  }
+
+  .about-section::before {
+    background-size:
+      56px 56px,
+      56px 56px,
+      100% 100%,
+      100% 100%;
   }
 
   h1 {
