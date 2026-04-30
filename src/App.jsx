@@ -160,7 +160,7 @@ const portfolio = {
       featured: true,
       preview: 'https://picsum.photos/seed/geoport-airphoto/800/450',
       summary:
-          'Downloadable airphoto dashboard for querying aerial photography by location and year.',
+          'Downloadable airphoto dashboard for querying aerial photography by location and year across Waterloo, Kitchener, and Guelph.',
       details:
           'Public-facing airphoto access experience that allows users to search and download aerial photography by year and municipality. This portfolio keeps the project as an outbound link while making the portfolio itself independent from ArcGIS hosting.',
       stack: ['ArcGIS Experience Builder', 'Dashboard UX', 'Airphotos', 'Search Design'],
