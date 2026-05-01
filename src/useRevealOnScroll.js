@@ -39,19 +39,25 @@ export function useRevealOnScroll() {
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle('reveal-visible', entry.isIntersecting)
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible')
+            sectionObserver.unobserve(entry.target)
+          }
         })
       },
-      { root: null, rootMargin: '-12% 0px -18% 0px', threshold: 0.18 }
+      { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
     )
 
     const headerObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle('header-reveal-visible', entry.isIntersecting)
+          if (entry.isIntersecting) {
+            entry.target.classList.add('header-reveal-visible')
+            headerObserver.unobserve(entry.target)
+          }
         })
       },
-      { root: null, rootMargin: '-18% 0px -34% 0px', threshold: 0.25 }
+      { root: null, rootMargin: '0px 0px -12% 0px', threshold: 0.06 }
     )
 
     nodes.forEach((node) => sectionObserver.observe(node))
