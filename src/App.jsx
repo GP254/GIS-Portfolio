@@ -24,6 +24,22 @@ const portfolio = {
 
   projects: [
     {
+      title: 'GeoDetect AI',
+      category: 'AI GIS',
+      preview: '/images/projects/geodetect-ai.png',
+      summary:
+        'Browser-based GIS imagery search tool that uses free open-vocabulary AI detectors to find features in satellite and aerial imagery.',
+      details:
+        'Supports high-resolution imagery, GeoTIFF/TIFF uploads, tiled scanning with overlap controls, confidence-ranked detections, pan-and-zoom review, detection circles, and CSV or GeoJSON-style pixel polygon exports with GeoTIFF metadata when available.',
+      stack: ['Transformers.js', 'OWL-ViT', 'OWLv2', 'GeoTIFF', 'Browser AI'],
+      links: [
+        {
+          label: 'Live application',
+          href: 'https://geodetectai.netlify.app/',
+        },
+      ],
+    },
+    {
       title: 'Sentinel-2 Snow Explorer and Analyzer',
       category: 'Remote Sensing',
       preview: '/images/projects/sentinel-2-snow-explorer.png',
@@ -234,13 +250,15 @@ function App() {
                       ))}
                     </div>
 
-                    <div className="project-links">
-                      {project.links.map((link) => (
-                        <a className="button button-ghost" key={link.href} href={link.href} target="_blank" rel="noreferrer">
-                          {link.label}
-                        </a>
-                      ))}
-                    </div>
+                    {project.links.length > 0 && (
+                      <div className="project-links">
+                        {project.links.map((link) => (
+                          <a className="button button-ghost" key={link.href} href={link.href} target="_blank" rel="noreferrer">
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </article>
               ))}
