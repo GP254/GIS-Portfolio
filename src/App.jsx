@@ -119,7 +119,10 @@ function App() {
       <header className="topbar">
         <div className="container topbar-inner">
           <a href="#about" className="brand" aria-label="Go to About Me">
-            GP
+            <span className="brand-mark" aria-hidden="true">
+              <img src="/images/globe-orbit.png" alt="" />
+            </span>
+            <span className="brand-text">Geospatial Portfolio</span>
           </a>
 
           <nav className="nav" aria-label="Primary navigation">
